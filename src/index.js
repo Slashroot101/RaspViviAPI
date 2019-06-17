@@ -1,7 +1,7 @@
 const fastify = require('fastify')({
     logger: true,
 });
-const swagger = require('./config/swagger');
+const swagger = require('./swagger');
 const config = require('../config');
 const mongoose = require('mongoose');
 
@@ -33,20 +33,11 @@ const start = async () => {
             auth: {
                 user: config.db.username,
                 password: config.db.password,
-                authdb: config.db.authdb,
             },
-            autoReconnect: true,
-            reconnectTries: 1000000,
-            reconnectInterval: 3000
+            useNewUrlParser: true
         });
         mongoose.set('debug', true);
         fastify.register(require('fastify-swagger'), swagger.options);
-        fastify.register(require('./user'), {prefix: '/api/users'});
-        fastify.register(require('./command'), {prefix: '/api/commands'});
-        fastify.register(require('./role'), {prefix: '/api/roles'});
-        fastify.register(require('./commandHistory'), {prefix: '/api/command-history'});
-        fastify.register(require('./guild'), {prefix: '/api/guilds'});
-        fastify.register(require('./lottery'), {prefix: '/api/lottery'});
         await fastify.listen(3000);
         fastify.swagger();
         fastify.log.info(`Server is listening on ${fastify.server.address().port}`);
