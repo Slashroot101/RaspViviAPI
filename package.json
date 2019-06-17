@@ -1,0 +1,26 @@
+{
+  "name": "raspviviapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bunyan": "^1.8.12",
+    "fastify": "^2.5.0",
+    "fs": "0.0.1-security",
+    "mongoose": "^5.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Slashroot101/RaspViviAPI.git"
+  },
+  "author": "slashroot101",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Slashroot101/RaspViviAPI/issues"
+  },
+  "homepage": "https://github.com/Slashroot101/RaspViviAPI#readme"
+}
