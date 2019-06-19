@@ -1,0 +1,1 @@
+const { boomify } = require('boom');

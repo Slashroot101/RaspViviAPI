@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const temperatureSchema = new mongoose.Schema({
+const measurementSchema = new mongoose.Schema({
     environmentID: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -20,3 +20,5 @@ const temperatureSchema = new mongoose.Schema({
         required: true,
     }
 });
+
+module.exports = mongoose.model('Measurement');
