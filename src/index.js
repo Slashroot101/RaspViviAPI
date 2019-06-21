@@ -40,6 +40,7 @@ const start = async () => {
         fastify.register(require('fastify-swagger'), swagger.options);
         await fastify.listen(3000);
         fastify.swagger();
+        fastify.register(require('./measurement'), {prefix: '/api/measurement'})
         fastify.log.info(`Server is listening on ${fastify.server.address().port}`);
     } catch (err) {
         fastify.log.error(err);
