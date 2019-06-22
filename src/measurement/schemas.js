@@ -47,3 +47,7 @@ exports.createMeasurement = {
         }
     }
 };
+
+exports.getWithFilter = {
+
+};
