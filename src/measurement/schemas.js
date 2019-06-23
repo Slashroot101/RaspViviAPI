@@ -1,6 +1,6 @@
 const MeasurementObject = {
     environmentID: {
-        type: 'String'
+        type: 'string'
     },
     measurement: {
         type: 'object',
@@ -23,7 +23,7 @@ const MeasurementResponseObject = {
     _id: {
         type: 'string'
     },
-    _v: {
+    __v: {
         type: 'number'
     },
 };
@@ -49,5 +49,25 @@ exports.createMeasurement = {
 };
 
 exports.getWithFilter = {
-
+    description: 'Get measurements with a filter',
+    tags: ['Measurement'],
+    summary: 'Gets all measurements for a given query string',
+    query: {
+        measuredOn: { type: 'string', description: 'The date that the measurement was taken on.'},
+        measuredOnEndDate: { type: 'string', description: 'The date that the measurements should stop on'},
+        environmentID: { type: 'string', description: 'The environment to query for the given measurements in'},
+    },
+    exposeRoute: true,
+    response: {
+        200: {
+            description: 'Successfully grabbed all measurements',
+            type: 'object',
+            properties: {
+                measurement: {
+                    type: 'array',
+                    items: { properties: MeasurementResponseObject }
+                }
+            },
+        }
+    }
 };
