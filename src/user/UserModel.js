@@ -37,9 +37,9 @@ const UserModel = new mongoose.Schema({
     }],
 });
 
-UserModel.pre('save', (next) => {
+UserModel.pre('save', function (next){
     if(!this.isModified('password')) return next;
-
+    this.joinDate = new Date();
     bcrypt.genSalt(config.saltFactor, (err, salt) => {
         if(err) return next(err);
 
@@ -59,4 +59,15 @@ UserModel.methods.comparePassword = function(candidatePassword, cb) {
     });
 };
 
-module.exports = mongoose.model('User', UserModel);
+UserModel.statics.authenticate = async (email, password) => {
+  const user = await User.findOne({email}).exec();
+  const isValidPassword = await bcrypt.compare(password, user.password);
+  return {
+      isValid: isValidPassword,
+      user
+  }
+};
+
+const User =  mongoose.model('User', UserModel);
+
+module.exports = User;

@@ -39,6 +39,7 @@ const start = async () => {
         mongoose.set('debug', true);
         fastify.register(require('fastify-swagger'), swagger.options);
         fastify.register(require('./measurement'), {prefix: '/api/measurement'});
+        fastify.register(require('./user'), {prefix: '/api/user'});
         await fastify.listen(3000);
         fastify.swagger();
         fastify.log.info(`Server is listening on ${fastify.server.address().port}`);
