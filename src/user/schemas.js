@@ -72,6 +72,9 @@ exports.createUser = {
                 user: {
                     type: 'object',
                     properties: userResponseObject
+                },
+                token: {
+                    type: 'string'
                 }
             },
         }
