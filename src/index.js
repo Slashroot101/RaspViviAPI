@@ -4,6 +4,7 @@ const fastify = require('fastify')({
 const swagger = require('./swagger');
 const config = require('../config');
 const mongoose = require('mongoose');
+const rjwt = require('restify-jwt-community');
 
 mongoose.connection.on('connected', () => {
     console.log('Connection Established')
@@ -29,17 +30,17 @@ mongoose.connection.on('error', (error) => {
 const start = async () => {
     try {
         mongoose.Promise = Promise;
-        await mongoose.connect(config.db.host, {
-            auth: {
-                user: config.db.username,
-                password: config.db.password,
-            },
-            useNewUrlParser: true
+        await mongoose.connect(config.db.connectionString, {
+            useNewUrlParser: true,
         });
         mongoose.set('debug', true);
         fastify.register(require('fastify-swagger'), swagger.options);
         fastify.register(require('./measurement'), {prefix: '/api/measurement'});
         fastify.register(require('./user'), {prefix: '/api/user'});
+        fastify.use(rjwt({secret: config.secretKey}).unless({
+            path: ['/api/user/login'],
+            useMongoClient: true,
+        }));
         await fastify.listen(3000);
         fastify.swagger();
         fastify.log.info(`Server is listening on ${fastify.server.address().port}`);

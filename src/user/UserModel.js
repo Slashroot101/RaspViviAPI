@@ -61,6 +61,12 @@ UserModel.methods.comparePassword = function(candidatePassword, cb) {
 
 UserModel.statics.authenticate = async (email, password) => {
   const user = await User.findOne({email}).exec();
+  if(!user){
+      return {
+          isValid: false,
+          user: {}
+      }
+  }
   const isValidPassword = await bcrypt.compare(password, user.password);
   return {
       isValid: isValidPassword,

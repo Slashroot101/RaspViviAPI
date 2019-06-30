@@ -14,6 +14,7 @@ exports.create = async (req, reply) => {
 
 exports.login = async(req, reply) => {
     try {
+        console.log(req.body)
         const isValidUser = await UserModel.authenticate(req.body.email, req.body.password);
         if(isValidUser.isValid){
             return {token: jwt.sign({id: isValidUser.user._id}, config.secretKey, {expiresIn: '1h'})};
@@ -21,6 +22,7 @@ exports.login = async(req, reply) => {
             return reply.code(401).send({msg: 'The username or password is incorrect'});
         }
     } catch (err) {
+        console.log(err)
         throw boomify(err);
     }
 };

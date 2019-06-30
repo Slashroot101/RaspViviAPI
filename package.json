@@ -11,7 +11,8 @@
     "fastify-swagger": "^2.4.0",
     "fs": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.6.0"
+    "mongoose": "^5.6.0",
+    "restify-jwt-community": "^1.0.13"
   },
   "devDependencies": {},
   "scripts": {

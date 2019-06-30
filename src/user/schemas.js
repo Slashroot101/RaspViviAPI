@@ -31,8 +31,8 @@ exports.login = {
     tags: ['User'],
     summary: 'Logs a user in, if the credentials are correct',
     body: {
-        email: { type: 'string', },
-        password: { type: 'string', },
+        email: { type: 'string', required: true, },
+        password: { type: 'string', required: true,},
     },
     exposeRoute: true,
     response: {
