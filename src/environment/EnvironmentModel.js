@@ -23,17 +23,6 @@ const environmentSchema = new mongoose.Schema({
       required: true,
     }
   },
-  liveInAnimals:[{
-    name: {
-      type: String,
-      required: true,
-    },
-    birthdate: {
-      type: Date,
-      required: false,
-    },
-
-  }],
 });
 
 module.exports = mongoose.model('Environment', environmentSchema);

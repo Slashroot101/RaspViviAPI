@@ -14,7 +14,6 @@ exports.create = async (req, reply) => {
 
 exports.login = async(req, reply) => {
     try {
-        console.log(req.body)
         const isValidUser = await UserModel.authenticate(req.body.email, req.body.password);
         if(isValidUser.isValid){
             return {token: jwt.sign({id: isValidUser.user._id}, config.secretKey, {expiresIn: '1h'})};
