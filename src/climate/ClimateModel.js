@@ -25,4 +25,4 @@ const environmentSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Environment', environmentSchema);
+module.exports = mongoose.model('Climate', environmentSchema);

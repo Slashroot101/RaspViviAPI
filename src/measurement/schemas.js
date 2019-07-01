@@ -55,7 +55,7 @@ exports.getWithFilter = {
     query: {
         measuredOn: { type: 'string', description: 'The date that the measurement was taken on.'},
         measuredOnEndDate: { type: 'string', description: 'The date that the measurements should stop on'},
-        environmentID: { type: 'string', description: 'The environment to query for the given measurements in'},
+        environmentID: { type: 'string', description: 'The climate to query for the given measurements in'},
     },
     exposeRoute: true,
     response: {

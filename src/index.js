@@ -36,7 +36,7 @@ const start = async () => {
         mongoose.set('debug', true);
         fastify.register(require('fastify-swagger'), swagger.options);
         fastify.register(require('./measurement'), {prefix: '/api/measurement'});
-        fastify.register(require('./environment'), {prefix: '/api/environment'});
+        fastify.register(require('./climate'), {prefix: '/api/climate'});
         fastify.register(require('./user'), {prefix: '/api/user'});
         fastify.use(rjwt({secret: config.secretKey}).unless({
             path: ['/api/user/login'],

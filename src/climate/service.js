@@ -1,5 +1,5 @@
 const {boomify} = require('boom');
-const EnvironmentModel = require('./EnvironmentModel');
+const EnvironmentModel = require('./ClimateModel');
 
 exports.create = async(req, reply) => {
   try {
