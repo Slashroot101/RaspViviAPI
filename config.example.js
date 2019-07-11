@@ -1,8 +1,7 @@
 module.exports = {
     db: {
-        username: 'qweqwe',
-        password: 'qweqweqw',
-        authdb: 'qweqwe',
-        host: 'qweqweqwe',
-    }
+        connectionString: '',
+    },
+    saltFactor: 2,
+    secretKey: 'asqweqweqweqweqwe',
 };
