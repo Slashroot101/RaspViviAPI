@@ -39,7 +39,7 @@ const start = async () => {
         fastify.register(require('./climate'), {prefix: '/api/climate'});
         fastify.register(require('./user'), {prefix: '/api/user'});
         fastify.use(rjwt({secret: config.secretKey}).unless({
-            path: ['/api/user/login'],
+            path: ['/api/user/login', '/api/user/'],
             useMongoClient: true,
         }));
         await fastify.listen(3000);
