@@ -6,7 +6,7 @@ const UserModel = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
     },
     password: {
         type: String,
@@ -28,11 +28,11 @@ const UserModel = new mongoose.Schema({
     accessibleEnvironments: [{
         environmentID: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Environment'
+            ref: 'Environment',
         },
         scope: [{
             type: String,
-            enum: ['Read', 'Write', 'Update', 'Delete']
+            enum: ['Read', 'Write', 'Update', 'Delete'],
         }]
     }],
 });
