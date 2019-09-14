@@ -6,27 +6,6 @@ const config = require('../config');
 const mongoose = require('mongoose');
 const rjwt = require('restify-jwt-community');
 
-mongoose.connection.on('connected', () => {
-    console.log('Connection Established')
-});
-
-mongoose.connection.on('reconnected', () => {
-    console.log('Connection Reestablished')
-});
-
-mongoose.connection.on('disconnected', () => {
-    console.log('Connection Disconnected')
-});
-
-mongoose.connection.on('close', () => {
-    console.log('Connection Closed')
-});
-
-mongoose.connection.on('error', (error) => {
-    console.log('ERROR: ' + error)
-});
-
-
 const start = async () => {
     try {
         mongoose.Promise = Promise;
@@ -39,9 +18,12 @@ const start = async () => {
         fastify.register(require('./climate'), {prefix: '/api/climate'});
         fastify.register(require('./user'), {prefix: '/api/user'});
         fastify.use(rjwt({secret: config.secretKey}).unless({
-            path: ['/api/user/login', '/api/user/'],
-            useMongoClient: true,
-        }));
+						path: ['/api/user/login', '/api/user'],
+				}));
+				fastify.register(require('fastify-cors'), {
+					origin: config.allowedOrigins,
+					methods: ['GET', 'PUT', 'POST'],
+				});
         await fastify.listen(3000);
         fastify.swagger();
         fastify.log.info(`Server is listening on ${fastify.server.address().port}`);
